@@ -23,6 +23,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt  # If you have any dependencies
 
+    - name: Set Tbilisi time zone for the workflow
+      run: echo "::set-env name=TZ::Asia/Tbilisi"
+
     - name: Run Python script
       run: python get_weather.py
       env:
