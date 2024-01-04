@@ -31,10 +31,13 @@ jobs:
       env:
         OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
 
+    - name: Generate HTML file
+      run: python generate_html.py index.html
+
     - name: Commit and push changes
       run: |
         git config --global user.name "Wezer-Man"
         git config --global user.email "lperto@gmail.com"
         git add weather_data.csv
-        git commit -m "Update weather data - $(date +'%Y-%m-%d %H:%M:%S')"
+        git commit -m "Update weather data and HTML - $(date +'%Y-%m-%d %H:%M:%S')"
         git push
