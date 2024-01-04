@@ -2,8 +2,7 @@ name: Weather Update
 
 on:
   schedule:
-    # - cron: '0 */6 * * *'  # Run every 6 hours
-    - cron: '*/10 * * * *'  # Run every 10 minutes
+    - cron: '0 */6 * * *'  # Run every 6 hours
 
 jobs:
   update_weather:
