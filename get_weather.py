@@ -1,7 +1,12 @@
-import os
-import requests
 import csv
 from datetime import datetime
+import os
+
+import pytz
+import requests
+
+
+georgia_timezone = pytz.timezone("Asia/Tbilisi")
 
 if os.name == "nt":
     from dotenv import load_dotenv
@@ -30,7 +35,7 @@ def get_weather(api_key, lat, lon):
 
 def update_csv(file_path, lat, lon, api_key):
     temperature, weather_description = get_weather(api_key, lat, lon)
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now(georgia_timezone).strftime("%Y-%m-%d %H:%M:%S")
 
     with open(file_path, "a", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
