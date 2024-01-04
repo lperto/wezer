@@ -2,8 +2,8 @@ name: Weather Update
 
 on:
   schedule:
-    # - cron: '0 */6 * * *'  # Run every 6 hours
-    - cron: '*/5 * * * *'  # Run every 5 minutes
+    - cron: '0 */6 * * *'  # Run every 6 hours
+    # - cron: '*/5 * * * *'  # Run every 5 minutes
 
 jobs:
   update_weather:
@@ -32,12 +32,12 @@ jobs:
         OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
 
     - name: Generate HTML file
-      run: python generate_html.py index.html
+      run: python generate_html.py
 
     - name: Commit and push changes
       run: |
         git config --global user.name "Wezer-Man"
         git config --global user.email "lperto@gmail.com"
-        git add weather_data.csv
+        git add weather_data.csv index.html
         git commit -m "Update weather data and HTML - $(date +'%Y-%m-%d %H:%M:%S')"
         git push
