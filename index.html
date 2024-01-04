@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data Plot</title>
+
+    <!-- Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <h1>Weather Data Plot</h1>
+
+    <div id="plotContainer" style="width: 80%; height: 400px;"></div>
+
+    <script>
+        // Data from CSV
+        const timestamps = [];
+        const xValues = timestamps.map(timestamp => new Date(timestamp));
+        const temperatures = [];
+
+        // Create the plot
+        const plotContainer = document.getElementById('plotContainer');
+
+        const trace = {
+            x: xValues,
+            y: temperatures,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: 'blue' },
+        };
+
+        const layout = {
+            title: 'Weather Data Plot',
+            xaxis: {
+                title: 'Timestamps',
+                type: 'datetime',
+            },
+            yaxis: { title: 'Temperature (&deg;C)' },
+        };
+
+        Plotly.newPlot(plotContainer, [trace], layout);
+    </script>
+</body>
+
+</html>
