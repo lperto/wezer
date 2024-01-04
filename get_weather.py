@@ -3,6 +3,11 @@ import requests
 import csv
 from datetime import datetime
 
+if os.name == "nt":
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
 
 def get_api_key():
     api_key = os.environ.get("OPENWEATHERMAP_API_KEY")
@@ -14,11 +19,8 @@ def get_api_key():
 def get_weather(api_key, lat, lon):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&appid={api_key}"
 
-    print(url)
-
     response = requests.get(url)
     data = response.json()
-    print(data)
 
     temperature = data["main"]["temp"]
     weather_description = data["weather"][0]["description"]
